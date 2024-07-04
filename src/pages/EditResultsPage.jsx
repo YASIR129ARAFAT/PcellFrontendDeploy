@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoReturnDownBack } from "react-icons/io5";
 
-import EditAnnouncementForm from "../components/editAnnouncementForm";
+import EditAnnouncementForm from "../components/EditAnnouncementForm.jsx";
 import Sidebar from "../components/Sidebar";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getLoggedInUserDetails } from "../utils/getLoggedInUserDetails.js";

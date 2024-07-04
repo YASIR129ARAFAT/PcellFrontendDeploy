@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import MessageCard from "../components/MessageCard";
+import MessageCard from "../components/MessageCard.jsx";
 
 import Sidebar from "../components/Sidebar";
-import WriteComment from "../components/WriteComment";
+import WriteComment from "../components/WriteComment.jsx";
 
 import { BiSolidCommentDetail } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMdDoneAll } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/Spinner.jsx";
 import { baseUrl } from "../constants";
 
 function ForgotPassword() {

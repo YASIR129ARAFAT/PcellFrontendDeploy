@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Label from "../components/Label";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import Spinner from "../components/Spinner";
+import Label from "../components/Label.jsx";
+import Input from "../components/Input.jsx";
+import Button from "../components/Button.jsx";
+import Spinner from "../components/Spinner.jsx";
 import {baseUrl} from '../constants.js'
 
 
