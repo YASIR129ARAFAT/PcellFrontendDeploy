@@ -9,7 +9,7 @@ import ResultsPage from "./pages/ResultsPage.jsx";
 import OpeningsPage from "./pages/OpeningsPage.jsx";
 import UserProfilePage from "./pages/UserProfilePage.jsx";
 import AllUsersPage from "./pages/AllUsersPage.jsx";
-import AllAdminPage from './pages/allAdminPage.jsx' 
+import AllAdminPage from "./pages/AllAdminPage.jsx"
 import EditAnnouncementsPage from "./pages/editAnnouncementsPage.jsx";
 import EditResultsPage from "./pages/EditResultsPage.jsx";
 import OtherUserProfilePage from "./pages/OtherUserProfilePage.jsx";

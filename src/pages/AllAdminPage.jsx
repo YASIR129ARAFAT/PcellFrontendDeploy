@@ -5,7 +5,7 @@ import { useState,useEffect } from "react";
 import { getAllAdmins } from "../services/getAllAdmins.services.js";
 import { getLoggedInUserDetails } from "../utils/getLoggedInUserDetails.js";
 import { useNavigate } from "react-router-dom";
-function AllUsersPage({ className = "" }) {
+function AllAdminPage({ className = "" }) {
 
   const [allAdmins, setAllAdmins] = useState([]);
   const [loggedInUserDetails,setLoggedInUserDetails] = useState({});
@@ -60,4 +60,4 @@ function AllUsersPage({ className = "" }) {
   );
 }
 
-export default AllUsersPage;
+export default AllAdminPage;
