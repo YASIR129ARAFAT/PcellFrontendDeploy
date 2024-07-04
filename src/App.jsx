@@ -10,12 +10,12 @@ import OpeningsPage from "./pages/OpeningsPage.jsx";
 import UserProfilePage from "./pages/UserProfilePage.jsx";
 import AllUsersPage from "./pages/AllUsersPage.jsx";
 import AllAdminPage from "./pages/AllAdminPage.jsx"
-import EditAnnouncementsPage from "./pages/editAnnouncementsPage.jsx";
+import EditAnnouncementsPage from "./pages/EditAnnouncementsPage.jsx";
 import EditResultsPage from "./pages/EditResultsPage.jsx";
 import OtherUserProfilePage from "./pages/OtherUserProfilePage.jsx";
-import UpdateUserDataPage from "./pages/updateUserDataPage.jsx";
-import AddOpeningPage from "./pages/addOpeningPage.jsx";
-import ChangePasswordPage from "./pages/changePasswordPage.jsx";
+import UpdateUserDataPage from "./pages/UpdateUserDataPage.jsx";
+import AddOpeningPage from "./pages/AddOpeningPage.jsx";
+import ChangePasswordPage from "./pages/ChangePasswordPage.jsx";
 import SingleOpeningPage from "./pages/SingleOpeningPage.jsx";
 import AddSelectionsPage from "./pages/AddSelectionsPage.jsx";
 import AllSelectionsPage from "./pages/AllSelectionsPage.jsx";
