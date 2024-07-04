@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import MessageCard from "../components/MessageCard";
-import Button from "../components/Button";
+
 import Sidebar from "../components/Sidebar";
 import WriteComment from "../components/WriteComment";
 

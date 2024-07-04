@@ -3,7 +3,7 @@ import MessageCard from "../components/MessageCard";
 import WriteComment from "../components/WriteComment";
 import Sidebar from "../components/Sidebar";
 import Comments from "../components/Comments";
-import axios from "axios";
+
 import { useParams } from "react-router-dom";
 
 import getSingleAnnouncementData from "../services/getSingleAnnouncementData.services.js";
