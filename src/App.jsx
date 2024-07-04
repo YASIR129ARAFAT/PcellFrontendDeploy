@@ -24,7 +24,7 @@ import PageNotFound from "./pages/PageNotFound.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 
 import { RouterProvider,Route,createRoutesFromElements, createBrowserRouter } from "react-router-dom";
-import ResetPasswordPage from "./pages/ResetPAsswordPage.jsx";
+import ResetPasswordPage from "./pages/ResetPasswordPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
