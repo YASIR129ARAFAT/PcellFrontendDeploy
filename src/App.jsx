@@ -54,7 +54,7 @@ const router = createBrowserRouter(
       <Route path="reset/:id" element={<ResetPasswordPage/>}/>
 
 
-      <Route path="*" element={<Navigate to="/"/>}/>
+      <Route path="*" element={<PageNotFound/>}/>
     </Route>
   )
 );

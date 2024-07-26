@@ -1,8 +1,5 @@
 {
-  "version": 2,
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/forgotPassword", "dest": "/index.html" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
-}
+    "rewrites": [
+      { "source": "/(.*)", "destination": "./index.html" }
+    ]
+  }
