@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "src": "/reset/[^/]+",
-      "dest": "/index.html"
+      "destination": "/index.html"
     },
     {
       "source": "/(.*)",
