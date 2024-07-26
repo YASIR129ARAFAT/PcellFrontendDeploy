@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { IoMdDoneAll } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
-import { baseUrl } from "../constants";
+import { baseUrl } from "../constants.js";
 
 
 function ResetPasswordPage() {

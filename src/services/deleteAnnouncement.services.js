@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "../constants";
+import { baseUrl } from "../constants.js";
 
 const deleteAnnouncement = async (id,setAllAnnouncements) => {
     try {

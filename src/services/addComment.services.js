@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "../constants";
+import { baseUrl } from "../constants.js";
 
 async function addComment(commentMessage, announcementId) {
     try {

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { getAllAnnouncements } from "./getAllAnnouncements.services";
-import { baseUrl } from "../constants";
+import { baseUrl } from "../constants.js";
 const postResult = async (e, setValue, value,setAllAnnouncements) => {
     // add announcement
     e.preventDefault();

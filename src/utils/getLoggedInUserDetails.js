@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "../constants";
+import { baseUrl } from "../constants.js";
 
 export const getLoggedInUserDetails = async()=>{
     try {
