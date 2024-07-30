@@ -6,6 +6,8 @@ const getAllAdmins = async () => {
     return data;
   } catch (error) {
     console.log("Failed to load all users page", error);
+    throw new Error(error)
+
   }
 };
 

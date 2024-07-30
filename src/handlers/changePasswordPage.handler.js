@@ -13,6 +13,7 @@ async function handleSubmit(e, formVal, setError, setMessage, navigate) {
         setMessage(data?.message)
     } catch (error) {
         console.log(error);
+        
     }
 }
 

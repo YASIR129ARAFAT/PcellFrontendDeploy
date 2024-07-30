@@ -26,6 +26,8 @@ const deleteAnnouncement = async (id,setAllAnnouncements) => {
       }
     } catch (error) {
       console.log("eror in deleting", error);
+      throw new Error(error)
+
     }
   };
 

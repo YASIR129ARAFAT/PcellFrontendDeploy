@@ -25,6 +25,8 @@ const getAllResults = async () => {
     } catch (error) {
       console.log(error);
     //   navigate("/error");
+    throw new Error(error)
+
     }
   };
 

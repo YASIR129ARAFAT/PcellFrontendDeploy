@@ -5,15 +5,21 @@ import { SiGoogledocs } from "react-icons/si";
 
 import { RiLockPasswordLine } from "react-icons/ri";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getLoggedInUserDetails } from "../utils/getLoggedInUserDetails.js";
 function UserProfilePage() {
   const [userData, setUserData] = useState({});
+  const navigate = useNavigate()
   useEffect(() => {
     async function setData() {
       // console.log("called...");
-      const data = await getLoggedInUserDetails();
-      setUserData(data);
+      try {
+        const data = await getLoggedInUserDetails();
+        setUserData(data);
+      } catch (error) {
+        console.log(error);
+        navigate('/')
+      }
       // console.log(data);
     }
     setData();

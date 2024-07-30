@@ -16,6 +16,7 @@ async function addOpening(formData) {
         return response?.data
     } catch (error) {
         console.log("error from addOpening services", error);
+        throw new Error(error)
     }
 }
 

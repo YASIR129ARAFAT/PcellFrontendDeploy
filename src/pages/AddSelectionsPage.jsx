@@ -21,6 +21,11 @@ function AddSelectionsPage() {
     async function loadLoggedInUserDetails() {
       try {
         const data = await getLoggedInUserDetails();
+
+        if(data?.userType === "student"){
+          navigate('/errorPage/Unauthorised')
+          return
+        }
         if(data?.success === 0){
           navigate(`/errorPage/${data?.message}`)
         }
@@ -29,7 +34,7 @@ function AddSelectionsPage() {
         }
       } catch (error) {
         console.log(error);
-        navigate(`/errorPage/internal error occured`)
+        navigate(`/`)
       }
     }
     loadLoggedInUserDetails();

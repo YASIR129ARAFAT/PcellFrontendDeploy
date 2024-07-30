@@ -17,6 +17,8 @@ const getAllUsers = async (getAdminsOnly) => {
         return response?.data;
     } catch (error) {
         console.log("Failed to load all users page", error);
+        throw new Error(error)
+
     }
 };
 

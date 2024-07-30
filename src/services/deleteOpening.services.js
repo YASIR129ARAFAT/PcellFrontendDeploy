@@ -16,6 +16,8 @@ const deleteOpening = async (_id) => {
     }
     catch (error) {
         console.log(error);
+        throw new Error(error)
+
     }
 }
 

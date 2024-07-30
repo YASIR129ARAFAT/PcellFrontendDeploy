@@ -29,6 +29,7 @@ function otherUserProfilePage() {
         setUserData(data2);
       } catch (error) {
         console.log(error);
+        navigate('/')
       }
     }
     setData();

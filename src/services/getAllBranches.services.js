@@ -7,7 +7,8 @@ async function getAllBranches (){
         return res?.data
     } catch (error) {
         console.log(error);
-        throw new Error("Internal server Error!!")
+        throw new Error(error)
+
     }
 }
 

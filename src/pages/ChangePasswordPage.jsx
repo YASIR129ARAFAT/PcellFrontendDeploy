@@ -32,8 +32,13 @@ function ChangePasswordPage() {
 
   useEffect(() => {
     async function loadLoggedInUserDetails() {
-      const data = await getLoggedInUserDetails();
-      setLoggedInUserDetails(data);
+      try {
+        const data = await getLoggedInUserDetails();
+        setLoggedInUserDetails(data);
+      } catch (error) {
+        console.log(error);
+        navigate('/')
+      }
     }
     loadLoggedInUserDetails();
 

@@ -8,9 +8,9 @@ import { getLoggedInUserDetails } from "../utils/getLoggedInUserDetails.js";
 import getSingleAnnouncementData from "../services/getSingleAnnouncementData.services.js";
 
 import {
-    handleChange,
-    handleClick,
-  } from "../handlers/editResultsForm.handler.js";
+  handleChange,
+  handleClick,
+} from "../handlers/editResultsForm.handler.js";
 
 function EditResultsPage() {
   const [loggedInUserDetails, setLoggedInUserDetails] = useState({});
@@ -21,8 +21,17 @@ function EditResultsPage() {
 
   useEffect(() => {
     async function setData() {
-      const data = await getLoggedInUserDetails();
-      setLoggedInUserDetails(data);
+      try {
+        const data = await getLoggedInUserDetails();
+        setLoggedInUserDetails(data);
+        if (data?.userType === "student") {
+          navigate("/errorPage/Not Authorised");
+          return;
+        }
+      } catch (error) {
+        console.log(error);
+        navigate("/");
+      }
     }
     setData();
 
@@ -31,6 +40,7 @@ function EditResultsPage() {
         setAnnouncement(await getSingleAnnouncementData(id));
       } catch (error) {
         console.log(error);
+        navigate("/errorPage/Internal Error");
       }
     }
     loadSingleAnnouncement();
@@ -48,12 +58,9 @@ function EditResultsPage() {
         >
           &#8249;
         </Button> */}
-        <Link
-            className="rounded-2xl m-2 p-2 "
-            to={`/results`}
-          >
-            <IoReturnDownBack className=" size-5 hover:text-white  hover:bg-blue-700 rounded-md" />
-          </Link>
+        <Link className="rounded-2xl m-2 p-2 " to={`/results`}>
+          <IoReturnDownBack className=" size-5 hover:text-white  hover:bg-blue-700 rounded-md" />
+        </Link>
 
         <EditAnnouncementForm
           announcement={announcement}

@@ -26,25 +26,39 @@ function AllAnnouncement({ className = "" }) {
 
   useEffect(() => {
     async function setData() {
-      const data = await getLoggedInUserDetails();
-      setLoggedInUserDetails(data);
+      try {
+        const data = await getLoggedInUserDetails();
+        setLoggedInUserDetails(data); 
+      } catch (error) {
+        console.log(error);
+        navigate('/')
+      }
     }
     setData();
 
+    
+  }, []); // use effect must not be given an async function or promise returning function directly
+  useEffect(()=>{
     async function loadAllAnnouncements() {
-      const data = await getAllResults();
+      try {
+        const data = await getAllResults();
       setAllAnnouncements(data);
+      } catch (error) {
+        console.log(error);
+        navigate('/errorPage/Internal Error')
+      }
     }
     loadAllAnnouncements();
-  }, []); // use effect must not be given an async function or promise returning function directly
-
+  },[])
   return (
     <>
       <Sidebar loggedInUserDetails={loggedInUser}>
+      <div className="mt-20 flex justify-center text-xl text-blue-900 ">Results</div>
+
         <div
-          className={`h-full mt-20 lg:w-[60%] md:w-full sm:w-full rounded-lg p-4`}
+          className={`h-full lg:w-[60%] md:w-full sm:w-full rounded-lg p-4`}
         >
-          {allAnnouncements.map((obj) => {
+          {allAnnouncements?.map((obj) => {
             obj.isResultsAnnouncement = 1;
 
             const handleClick = () => {

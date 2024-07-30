@@ -20,6 +20,7 @@ async function addComment(commentMessage, announcementId) {
         return addedComment;
     } catch (error) {
         console.log(error);
+        throw new Error(error)
     }
 }
 export { addComment }

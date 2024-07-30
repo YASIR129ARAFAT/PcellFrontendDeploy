@@ -19,6 +19,8 @@ async function addSelections(_id,enrolmentNo) {
             return response?.data;
     } catch (error) {
         console.log(error);
+        throw new Error(error)
+
     }
 }
 

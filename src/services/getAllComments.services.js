@@ -17,6 +17,8 @@ const getAllComments = async (id) => {
       return res?.data;
     } catch (error) {
       console.log("error getting single announcement", error);
+      throw new Error(error)
+
     }
   };
 

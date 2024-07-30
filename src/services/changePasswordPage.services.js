@@ -18,6 +18,8 @@ async function changePassword(formVal) {
 
     } catch (error) {
         console.log(error);
+        throw new Error(error)
+
     }
 }
 

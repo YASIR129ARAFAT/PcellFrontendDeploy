@@ -35,7 +35,7 @@ function AllAnnouncement({ className = "" }) {
         }
       } catch (error) {
         console.log(error);
-        navigate(`/errorPage/internal server error`);
+        navigate(`/`);
       }
     }
     setData();
@@ -61,8 +61,9 @@ function AllAnnouncement({ className = "" }) {
     <>
       <Sidebar loggedInUserDetails={loggedInUser}>
         <div
-          className={`h-full mt-20 lg:w-[60%] md:w-full sm:w-full rounded-lg p-4`}
+          className={`h-full lg:w-[60%] md:w-full sm:w-full rounded-lg p-4`}
         >
+        <div className="mt-20 flex justify-center text-xl text-blue-900 ">General Announcements</div>
           {allAnnouncements.map((obj) => {
             obj.isResultsAnnouncement = 1;
 

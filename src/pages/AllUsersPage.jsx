@@ -23,7 +23,7 @@ function AllUsersPage({ className = "" }) {
         }
       } catch (error) {
         console.log(error);
-        navigate('/errorPage/internal server error')
+        navigate('/')
       }
     }
     setData();
@@ -47,10 +47,12 @@ function AllUsersPage({ className = "" }) {
 
   return (
     <Sidebar loggedInUserDetails={loggedInUserDetails}>
+      <div className="mt-20 flex justify-center text-xl text-blue-900 ">All Users</div>
       <div
-        className={`mx-auto justify-center mt-20 bg-blue-50 flex flex-row flex-wrap ${className}`}
+        className={`mx-auto justify-center mt-0 bg-blue-50 flex flex-row flex-wrap ${className}`}
       >
-        {allUsersData.map((ele) => {
+
+        {allUsersData?.map((ele) => {
           return (
             <ProfileCard
               loggedInUserDetails={loggedInUserDetails}

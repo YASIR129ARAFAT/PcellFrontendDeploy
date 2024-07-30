@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
+import Spinner from "./Spinner";
+
 // import {
 //   handleChange,
 //   handleClick,
 // } from "../handlers/editAnnouncementForm.handler";
-function EditAnnouncementForm({ announcement,handleChange,handleClick }) {
+function EditAnnouncementForm({ announcement,handleChange,handleClick,loading,setLoading }) {
   const [formContent, setFormContent] = useState("");
     const navigate = useNavigate()
   useEffect(() => {
@@ -35,11 +37,12 @@ function EditAnnouncementForm({ announcement,handleChange,handleClick }) {
       <Button
         type={"submit"}
         onClick={(e) => {
-          handleClick(e, formContent,announcement,navigate);
+          handleClick(e, formContent,announcement,navigate,setLoading);
         }}
         className="mt-4"
       >
-        Update
+        <Spinner loading={loading} text={"Update"}/>
+
       </Button>
     </form>
   );

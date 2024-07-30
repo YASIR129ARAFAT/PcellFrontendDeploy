@@ -1,58 +1,64 @@
 import React from "react";
 import ProfileCard from "../components/ProfileCard.jsx";
 import Sidebar from "../components/Sidebar.jsx";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getAllAdmins } from "../services/getAllAdmins.services.js";
 import { getLoggedInUserDetails } from "../utils/getLoggedInUserDetails.js";
 import { useNavigate } from "react-router-dom";
 function AllAdminPage({ className = "" }) {
-
   const [allAdmins, setAllAdmins] = useState([]);
-  const [loggedInUserDetails,setLoggedInUserDetails] = useState({});
-  const navigate = useNavigate()
+  const [loggedInUserDetails, setLoggedInUserDetails] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
-    async function loadAllAdmins (){
+    async function loadAllAdmins() {
       try {
-        const data = await getAllAdmins()
+        const data = await getAllAdmins();
         console.log("all admins ");
         // console.log(data);
-        if(data?.success === 0){
-          navigate(`/errorPage/${data?.message}`)
-        }else{
+        if (data?.success === 0) {
+          navigate(`/errorPage/${data?.message}`);
+        } else {
           setAllAdmins(data);
         }
       } catch (error) {
         console.log(error);
-        navigate(`/errorPage/internal error occured`)
+        navigate(`/errorPage/internal error occured`);
       }
     }
-    loadAllAdmins()
+    loadAllAdmins();
 
-    async function loadLoggedInUserDetails(){
+    async function loadLoggedInUserDetails() {
       try {
         const data = await getLoggedInUserDetails();
-        if(data?.success === 0){
-          navigate(`/errorPage/${data?.message}`)
-        }
-        else{
-          setLoggedInUserDetails(data)
+        if (data?.success === 0) {
+          navigate(`/errorPage/${data?.message}`);
+        } else {
+          setLoggedInUserDetails(data);
         }
       } catch (error) {
         console.log(error);
-        navigate(`/errorPage/internal error occured`)
+        navigate(`/`);
       }
     }
-    loadLoggedInUserDetails()
+    loadLoggedInUserDetails();
   }, []);
 
   return (
     <Sidebar loggedInUserDetails={loggedInUserDetails}>
+      <div className="mt-20 flex justify-center text-xl text-blue-900 ">
+        All Admins
+      </div>
+
       <div
-        className={`mx-auto justify-center mt-20 bg-blue-50 flex flex-row flex-wrap ${className}`}
+        className={`mx-auto justify-center bg-blue-50 flex flex-row flex-wrap ${className}`}
       >
-        {allAdmins.map((ele,ind) => {
+        {allAdmins?.map((ele, ind) => {
           return (
-            <ProfileCard key={ind} userData={ele} className="ml-16 mb-4"></ProfileCard>
+            <ProfileCard
+              key={ind}
+              userData={ele}
+              className="ml-16 mb-4"
+            ></ProfileCard>
           );
         })}
       </div>

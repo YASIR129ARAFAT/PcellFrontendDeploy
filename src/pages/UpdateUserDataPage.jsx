@@ -19,7 +19,7 @@ function UpdateUserDataPage() {
     dob: "",
     mobile: "",
     profileImage: "",
-    resume: ""
+    resume: "",
   });
 
   const [error, setError] = useState({
@@ -28,7 +28,7 @@ function UpdateUserDataPage() {
     mobileError: "",
     otherError: "",
     profileImageError: "",
-    resumeError:''
+    resumeError: "",
   });
 
   const [loggedInUserDetails, setLoggedInUserDetails] = useState({});
@@ -37,25 +37,39 @@ function UpdateUserDataPage() {
 
   useEffect(() => {
     async function loadLoggedInUserDetails() {
-      const data = await getLoggedInUserDetails();
-      setLoggedInUserDetails(data);
+      try {
+        const data = await getLoggedInUserDetails();
+        if(data?._id !== id){
+          navigate('/errorPage/Unauthorised')
+          return
+        }
+        setLoggedInUserDetails(data);
+      } catch (error) {
+        console.log(error);
+        navigate("/");
+      }
       // console.log(data);
     }
     loadLoggedInUserDetails();
 
     async function loadUserDetails() {
-      const data = await getUserData(id);
-
-      const dob = data?.dob;
-
-      const formattedDate = dob.slice(0, 10);
-
-      setFormVal({
-        email: data?.email,
-        mobile: data?.mobile,
-        dob: formattedDate,
-        resume:data?.resume
-      });
+      try {
+        const data = await getUserData(id);
+  
+        const dob = data?.dob;
+  
+        const formattedDate = dob.slice(0, 10);
+        
+        setFormVal({
+          email: data?.email,
+          mobile: data?.mobile,
+          dob: formattedDate,
+          resume: data?.resume,
+        });
+      } catch (error) {
+        console.log(error);
+        navigate('/errorPage/Internal Error')
+      }
     }
     loadUserDetails();
   }, []);
@@ -77,7 +91,10 @@ function UpdateUserDataPage() {
         <div className="flex flex-col items-center mb-10 text-2xl text-blue-800">
           Update Your Details
         </div>
-        <form className="max-w-sm mx-auto border-2 border-grey-400 bg-gray-50 bg rounded-lg pl-10 pr-10 pt-4 pb-4" encType="multipart/form-data">
+        <form
+          className="max-w-sm mx-auto border-2 border-grey-400 bg-gray-50 bg rounded-lg pl-10 pr-10 pt-4 pb-4"
+          encType="multipart/form-data"
+        >
           <div className="mb-5">
             <label
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -96,7 +113,8 @@ function UpdateUserDataPage() {
             />
             {error?.profileImageError !== "" && (
               <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                <span className="font-medium">Oops!</span> {error?.profileImageError}
+                <span className="font-medium">Oops!</span>{" "}
+                {error?.profileImageError}
               </p>
             )}
           </div>

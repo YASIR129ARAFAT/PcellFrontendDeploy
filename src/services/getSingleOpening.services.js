@@ -15,6 +15,8 @@ async function getSingleOpening(_id) {
             return response?.data?.opening;
     } catch (error) {
         console.log(error);
+        throw new Error(error)
+
     }
 }
 

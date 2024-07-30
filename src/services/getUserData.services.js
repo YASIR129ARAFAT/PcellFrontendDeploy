@@ -20,6 +20,8 @@ const getUserData = async(id)=>{
     }
     catch(error){
         console.log("error in fetching userData",error);
+        throw new Error(error)
+
     }
 }
 export{

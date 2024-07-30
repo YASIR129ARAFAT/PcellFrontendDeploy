@@ -54,6 +54,7 @@ function OpeningsPage({ className = "" }) {
         setLoggedInUserDetails(data);
       } catch (error) {
         console.log(error);
+        navigate('/')
       }
     }
     loadLoggedInUserDetails();
@@ -65,6 +66,7 @@ function OpeningsPage({ className = "" }) {
         setOpenings(data);
       } catch (error) {
         console.log(error);
+        navigate('/errorPage/Internal Error')
       }
     }
     loadOpenings();
@@ -75,11 +77,13 @@ function OpeningsPage({ className = "" }) {
       <Sidebar loggedInUserDetails={loggedInUserDetails} className="mb-0 pb-0">
         <>
           {" "}
-          <div className={`h-full mt-20 w-[70%] rounded-lg p-4`}>
-            {openings.map((pp) => {
+          <div className="mt-20 flex justify-center text-xl text-blue-900 ">All Openings</div>
+
+          <div className={`h-full w-[70%] rounded-lg p-4`}>
+            {openings.map((pp,ind) => {
               pp.isResultsAnnouncement = 0;
               return (
-                <SingleOpening key={pp?._id} obj={pp} className="w-full">
+                <SingleOpening key={ind} obj={pp} className="w-full">
                   <div className="flex flex-row justify-between">
                     {/* //comment */}
                     <div className="flex flex-row">
@@ -92,23 +96,28 @@ function OpeningsPage({ className = "" }) {
                         <BiSolidCommentDetail color="grey" size={24} />
                       </button>
 
-                      {/* //delete */}
-                      <button
-                        className="mt-4 p-0 m-0 ml-2"
-                        onClick={(e) => {
-                          handleClickDelete(e, pp?._id);
-                        }}
-                      >
-                        <MdDelete color="red" size={24} />
-                      </button>
+                      {
+                        loggedInUserDetails?.userType === "admin" && (<>{/* //delete */}
+                          <button
+                            className="mt-4 p-0 m-0 ml-2"
+                            onClick={(e) => {
+                              handleClickDelete(e, pp?._id);
+                            }}
+                          >
+                            <MdDelete color="red" size={24} />
+                          </button>
+    
+                          {/* //edit */}
+                          {/* <button
+                            className="mt-4 p-0 m-0 ml-2"
+                            onClick={handleClickEdit}
+                          >
+                            <RiEdit2Fill color="darkgreen" size={24} />
+                          </button> */}
+                          </>)
+                      }
 
-                      {/* //edit */}
-                      <button
-                        className="mt-4 p-0 m-0 ml-2"
-                        onClick={handleClickEdit}
-                      >
-                        <RiEdit2Fill color="darkgreen" size={24} />
-                      </button>
+
                     </div>
                       
                       {/* add selections */}

@@ -5,8 +5,9 @@ const handleChange = (e, setFormContent) => {
 };
 
 // i cant import and call useNavigate() here because hooks can only be called inside react functional component
-const handleClick = async (e, formContent,announcement, navigate) => {
+const handleClick = async (e, formContent,announcement, navigate,setLoading) => {
     e.preventDefault();
+    setLoading(1);
     try {
         // console.log(formContent);
         const res = await updateAnnouncement(formContent,announcement?._id); // id of the announcement
@@ -15,6 +16,7 @@ const handleClick = async (e, formContent,announcement, navigate) => {
     } catch (error) {
         console.log(error);
     }
+    setLoading(0)
 };
 
 export { handleChange, handleClick }

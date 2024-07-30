@@ -15,21 +15,20 @@ function AllSelectionsPage() {
   const [allSelections, setAllSelections] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadLoggedInUserDetails() {
       try {
         const data = await getLoggedInUserDetails();
-        if(data?.success === 0){
-          navigate(`/errorPage/${data?.message}`)
-        }else{
+        if (data?.success === 0) {
+          navigate(`/errorPage/${data?.message}`);
+        } else {
           setLoggedInUserDetails(data);
-
         }
       } catch (error) {
         console.log(error);
-        navigate(`/errorPage/internal server error`)
+        navigate(`/`);
       }
     }
     loadLoggedInUserDetails();
@@ -38,15 +37,14 @@ function AllSelectionsPage() {
       try {
         const data = await getAllSelections();
         // console.log("lll", data);
-        if(data?.success === 0){
-          navigate(`/errorPage/${data?.message}`)
-        }
-        else{
+        if (data?.success === 0) {
+          navigate(`/errorPage/${data?.message}`);
+        } else {
           setAllSelections(data?.newSelection);
         }
       } catch (error) {
         console.log(error);
-        navigate(`/errorPage/internal server error`)
+        navigate(`/errorPage/internal server error`);
       }
     }
     loadAllSelections();
@@ -67,7 +65,9 @@ function AllSelectionsPage() {
         </p>
       )}
       <div className=" shadow-md sm:rounded-lg mt-28 w-full">
-      <div className="mb-8 flex justify-center text-xl"><b>Placed Students</b></div>
+        <div className="mb-8 flex justify-center text-xl">
+          <b>Placed Students</b>
+        </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -86,9 +86,11 @@ function AllSelectionsPage() {
               <th scope="col" className="px-6 py-3">
                 Offer Type
               </th>
-              <th scope="col" className="px-6 py-3">
-                Delete
-              </th>
+              {loggedInUserDetails?.userType === "admin" && (
+                <th scope="col" className="px-6 py-3">
+                  Delete
+                </th>
+              )}
             </tr>
           </thead>
           {allSelections.length > 0
@@ -117,15 +119,24 @@ function AllSelectionsPage() {
                       <td className="px-6 py-4">
                         {ele?.companyDetails?.offerType}
                       </td>
-                      <td className="px-6 py-4">
+                      {loggedInUserDetails?.userType === 'admin' && <td className="px-6 py-4">
                         <button
                           onClick={() => {
-                            handleDelete(ele?._id,allSelections,setAllSelections,setSuccessMessage,setErrorMessage);
+                            handleDelete(
+                              ele?._id,
+                              allSelections,
+                              setAllSelections,
+                              setSuccessMessage,
+                              setErrorMessage
+                            );
                           }}
                         >
-                          <MdDelete size={24}></MdDelete>
+                           
+                            <MdDelete size={24}></MdDelete>
+                          
                         </button>
-                      </td>
+                      </td>}
+                      
                     </tr>
                   </tbody>
                 );

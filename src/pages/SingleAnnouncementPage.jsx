@@ -4,7 +4,7 @@ import WriteComment from "../components/WriteComment";
 import Sidebar from "../components/Sidebar";
 import Comments from "../components/Comments";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import getSingleAnnouncementData from "../services/getSingleAnnouncementData.services.js";
 import { getAllComments } from "../services/getAllComments.services.js";
@@ -16,7 +16,7 @@ function SingleAnnouncement() {
   const [loggedInUserDetails, setLoggedInUserDetails] = useState({});
   const [singleAnnouncement, setSingleAnnouncement] = useState(""); // single announcement from db
   const [allComments, setAllComments] = useState([{}]);
-
+  const navigate = useNavigate()
   const { _id } = useParams(); //single announcement id
   const id = _id;
 
@@ -30,6 +30,7 @@ function SingleAnnouncement() {
         setSingleAnnouncement({ isResultsAnnouncement: 1, ...data }); // to indicate that it is a comment box
       } catch (error) {
         console.log(error);
+        navigate('/errorPage/internal error')
       }
     }
     loadSingleAnnouncement(id);
@@ -40,6 +41,7 @@ function SingleAnnouncement() {
         setAllComments(data);
       } catch (error) {
         console.log(error);
+        navigate('/errorPage/internal error')
       }
     }
     loadAllComments(id);
@@ -50,6 +52,7 @@ function SingleAnnouncement() {
         setLoggedInUserDetails(data);
       } catch (error) {
         console.log(error);
+        navigate('/')
       }
     }
     loggedInUser();
@@ -74,6 +77,7 @@ function SingleAnnouncement() {
       <Comments
         commentsArray={allComments}
         setCommentsArray={setAllComments}
+        loggedInUserDetails={loggedInUserDetails}
         className="mt-10 lg:w-[68%] sm:w-full md:w-full"
       ></Comments>
     </Sidebar>

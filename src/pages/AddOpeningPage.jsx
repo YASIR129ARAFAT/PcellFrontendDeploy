@@ -200,9 +200,12 @@ const AddOpeningPage = () => {
         }else{
           setLoggedInUserDetails(data);
         }
+        if(data?.userType === 'student'){
+          navigate('/errorPage/not authorised')
+        }
       } catch (error) {
         console.log(error);
-        navigate(`/errorPage/internal server error`)
+        navigate(`/`)
       }
     }
     loadLoggedInUserDetails();

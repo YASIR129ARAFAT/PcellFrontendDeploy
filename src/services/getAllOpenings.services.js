@@ -14,6 +14,8 @@ async function getAllOpenings(){
 
     } catch (error) {
         console.log(error);
+        throw new Error(error)
+
     }
 }
 

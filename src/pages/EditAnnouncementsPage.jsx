@@ -15,23 +15,36 @@ import {
 function EditAnnouncementsPage() {
   const [loggedInUserDetails, setLoggedInUserDetails] = useState({});
   const [announcement, setAnnouncement] = useState({});
+  const [loading, setLoading] = useState(0)
   const { id } = useParams(); // id of the announcement
   const navigate = useNavigate();
   // console.log("id from edit annc page",id);
 
   useEffect(() => {
     async function setData() {
-      const data = await getLoggedInUserDetails();
-      setLoggedInUserDetails(data);
+      try {
+        const data = await getLoggedInUserDetails();
+        setLoggedInUserDetails(data);
+
+        if(data?.userType === "student"){
+          navigate("/errorPage/Not Authorised")
+          return
+        }
+      } catch (error) {
+        console.log(error);
+        navigate('/')
+      }
     }
     setData();
 
     async function f() {
+
       try {
         setAnnouncement(await getSingleAnnouncementData(id));
       } catch (error) {
         console.log(error);
       }
+
     }
     f();
   }, [id]);
@@ -58,6 +71,8 @@ function EditAnnouncementsPage() {
           announcement={announcement}
           handleChange={handleChange}
           handleClick={handleClick}
+          loading={loading}
+          setLoading={setLoading}
         ></EditAnnouncementForm>
       </div>
     </Sidebar>

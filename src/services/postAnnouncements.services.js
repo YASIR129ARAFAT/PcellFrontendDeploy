@@ -27,6 +27,8 @@ const postAnnouncement = async (e, setValue, value,setAllAnnouncements) => {
         // navigate('/allannouncements')
     } catch (error) {
         console.log("error in posting the comment", error);
+        throw new Error(error)
+
     }
 };
 

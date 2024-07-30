@@ -13,6 +13,8 @@ async function updateAnnouncement(formContent,id){
         return response?.data;
     } catch (error) {
         console.log("error in updating announcement",error);
+        throw new Error(error)
+
     }
 }
 

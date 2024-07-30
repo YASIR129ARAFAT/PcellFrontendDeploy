@@ -1,7 +1,7 @@
 import axios from "axios";
 import Spinner from "../components/Spinner.jsx";
 import React, { useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { IoMdDoneAll } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { baseUrl } from "../constants.js";
@@ -127,6 +127,7 @@ function ResetPasswordPage() {
                 />
               </div>
 
+              <Link className="text-blue-600 text-sm" to={"/"} ><u>Login</u></Link>
               <button
                 type="submit"
                 className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

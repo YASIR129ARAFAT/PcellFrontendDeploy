@@ -7,13 +7,13 @@ import Comments from "../components/Comments";
 import { getAllComments } from "../services/getAllComments.services.js";
 import { getSingleOpening } from "../services/getSingleOpening.services.js";
 import { handleClick } from "../handlers/singleOpeningPage.handler.js";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 function SingleOpeningPage() {
   const [loggedInUserDetails, setLoggedInUserDetails] = useState({});
   const [comments, setComments] = useState("");
   const [allComments, setAllComments] = useState([]);
   const [opening, setOpening] = useState({});
-
+  const navigate = useNavigate()
   const { _id } = useParams();
   const id = _id;
   useEffect(() => {
@@ -34,6 +34,7 @@ function SingleOpeningPage() {
         setLoggedInUserDetails(data);
       } catch (error) {
         console.log(error);
+        navigate('/')
       }
     }
     loadLoggedInUserDetails();
@@ -44,6 +45,7 @@ function SingleOpeningPage() {
         setAllComments(data);
       } catch (error) {
         console.log(error);
+        navigate('/errorPage/Internal Error')
       }
     }
     loadAllComments(id);
@@ -66,6 +68,7 @@ function SingleOpeningPage() {
       <Comments
         commentsArray={allComments}
         setCommentsArray={setAllComments}
+        loggedInUserDetails={loggedInUserDetails}
         className="mt-10 lg:w-[68%] sm:w-full md:w-full"
       ></Comments>
     </Sidebar>
